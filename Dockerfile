@@ -14,10 +14,10 @@ RUN	curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
 RUN	mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Register the Microsoft Product feed for your distro version
-RUN 	sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
 
 # Add ffmpeg3 ppa
-RUN 	add-apt-repository ppa:jonathonf/ffmpeg-3
+RUN add-apt-repository ppa:jonathonf/ffmpeg-3
 
 # Updating existing tools
 RUN	apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y
@@ -38,9 +38,9 @@ RUN	apt-get update && apt-get install -y libopus0 opus-tools libopus-dev libsodi
 RUN	curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
 
 #Download and install stable version of Nadeko
-RUN	curl -H "Cache-Control: no-cache" https://raw.githubusercontent.com/willysunny/Nadecker/master/nadeko_installer_2_16_1.sh -o ./nadeko_installer.sh && chmod 755 nadeko_installer.sh && ./nadeko_installer.sh
-RUN	curl -O -H "Cache-Control: no-cache" https://raw.githubusercontent.com/willysunny/Nadecker/master/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
-	
+RUN	curl -H "Cache-Control: no-cache" https://raw.githubusercontent.com/vSh1ny/Nadecker/master/nadeko_installer_2_16_1.sh -o nadeko_installer.sh && chmod 755 nadeko_installer.sh && ./nadeko_installer.sh
+RUN	curl -O -H "Cache-Control: no-cache" https://raw.githubusercontent.com/vSh1ny/Nadecker/master/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
+
 VOLUME ["/root/nadeko"]
 
 CMD ["sh","/opt/nadeko_autorestart.sh"]
