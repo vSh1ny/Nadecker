@@ -10,8 +10,7 @@ RUN	apt-get update
 RUN	apt-get install software-properties-common apt-transport-https curl -y
 
 # Register the trusted Microsoft signature key
-RUN	curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-RUN	mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+RUN	curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg
 
 # Register the Microsoft Product feed for your distro version
 RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
@@ -38,8 +37,8 @@ RUN	apt-get update && apt-get install -y libopus0 opus-tools libopus-dev libsodi
 RUN	curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
 
 #Download and install stable version of Nadeko
-RUN	curl -H "Cache-Control: no-cache" https://raw.githubusercontent.com/vSh1ny/Nadecker/master/nadeko_installer_2_16_7.sh -o nadeko_installer.sh && chmod 755 nadeko_installer.sh && ./nadeko_installer.sh
-RUN	curl -O -H "Cache-Control: no-cache" https://raw.githubusercontent.com/vSh1ny/Nadecker/master/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
+RUN	curl -H "Cache-Control: no-cache" https://cdn.rawgit.com/vSh1ny/Nadecker/2b6504c1/nadeko_installer_2_16_10.sh -o nadeko_installer.sh && chmod 755 nadeko_installer.sh && ./nadeko_installer.sh
+RUN	curl -O -H "Cache-Control: no-cache" https://cdn.rawgit.com/vSh1ny/Nadecker/2b6504c1/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
 
 VOLUME ["/root/nadeko"]
 
