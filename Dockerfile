@@ -12,7 +12,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /et
   apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && \
   apt-get install -y software-properties-common apt-transport-https curl git dotnet-sdk-2.0.0 redis-server libopus0 opus-tools libopus-dev libsodium-dev ffmpeg rsync python python3-pip && \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl && \
-  curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/10d738f7caa07973dc832fcc13473fd237a178b6/nadeko_installer.sh && \
+  curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/914e83de93ae64faec410035ea996940939530c9/nadeko_installer.sh && \
   chmod 755 nadeko_installer.sh && \
   ./nadeko_installer.sh && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/pre-release/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
