@@ -14,7 +14,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /et
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/3e91148c6159c3359a50e2d496d34dc08a604c24/nadeko_installer.sh && \
   chmod 755 nadeko_installer.sh && \
-  ./nadeko_installer.sh 2.25.0 && \
+  ./nadeko_installer.sh 2.25.1 && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/pre-release/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
 
 VOLUME ["/root/nadeko"]
