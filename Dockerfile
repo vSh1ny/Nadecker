@@ -9,13 +9,15 @@ WORKDIR /opt/
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg && \
   sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list' && \
   add-apt-repository ppa:jonathonf/ffmpeg-3 && \
-  apt-get update && apt-get upgrade -y && apt-get dist-upgrade -y && \
-  apt-get install -y software-properties-common apt-transport-https curl git dotnet-sdk-2.0.0 redis-server libopus0 opus-tools libopus-dev libsodium-dev ffmpeg rsync python python3-pip && \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+
+RUN apt-get update && apt-get install -y software-properties-common apt-transport-https curl git dotnet-sdk-2.1.4 redis-server libopus0 opus-tools libopus-dev libsodium-dev ffmpeg rsync python python3-pip && \
   curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/3e91148c6159c3359a50e2d496d34dc08a604c24/nadeko_installer.sh && \
   chmod 755 nadeko_installer.sh && \
-  ./nadeko_installer.sh 2.25.1 && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/pre-release/nadeko_autorestart.sh && chmod 755 nadeko_autorestart.sh
+
+RUN ./nadeko_installer.sh 2.25.2
 
 VOLUME ["/root/nadeko"]
 
