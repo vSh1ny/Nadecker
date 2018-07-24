@@ -17,7 +17,7 @@ RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/yout
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/933dee51/nadeko_installer.sh && chmod +rx nadeko_installer.sh && \
   curl -O https://cdn.rawgit.com/vSh1ny/Nadecker-BashScript/933dee51/nadeko_autorestart.sh && chmod +rx nadeko_autorestart.sh
 
-RUN ./nadeko_installer.sh 2.26.0
+RUN ./nadeko_installer.sh 2.26.1
 
 VOLUME ["/root/nadeko"]
 
