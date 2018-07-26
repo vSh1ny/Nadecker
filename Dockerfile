@@ -23,4 +23,4 @@ RUN ./nadeko_installer.sh
 
 VOLUME ["/root/nadeko"]
 
-CMD ["sh","/opt/nadeko_autorestart.sh"]
+CMD ["/bin/bash","/opt/nadeko_autorestart.sh"]
