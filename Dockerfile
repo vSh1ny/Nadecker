@@ -14,17 +14,32 @@ COPY opt ./
 
 SHELL ["/bin/bash", "-c"]
 
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
+RUN curl -sL https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
 
 RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 
-RUN curl -O https://packages.microsoft.com/config/ubuntu/$(lsb_release -sr)/packages-microsoft-prod.deb && \
+RUN curl -sO https://packages.microsoft.com/config/ubuntu/$(lsb_release -sr)/packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm -f packages-microsoft-prod.deb
 
-RUN apt-get update && apt-get install -y software-properties-common apt-transport-https curl git dotnet-sdk-2.1.4 redis-server libopus0 opus-tools libopus-dev libsodium-dev ffmpeg rsync python python3-pip tzdata && \
-	rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+  apt-transport-https \
+  curl \
+  dotnet-sdk-2.0.0 \
+  ffmpeg \
+  git \
+  libopus-dev \
+  libopus0 \
+  libsodium-dev \
+  opus-tools \
+  python \
+  python3-pip \
+  redis-server \
+  rsync \
+  software-properties-common \
+  tzdata \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN info() { printf '%s\n' "$@"; }; \
 	\
@@ -48,7 +63,7 @@ RUN info() { printf '%s\n' "$@"; }; \
 	\
 	cd "$root"; \
 	\
-	info '' "Downloading NadekoBot, please wait…"; \
+	info '' "Downloading NadekoBot ${branch}. Please wait…"; \
 	\
 	if [[ -n ${VERSION} ]]; then \
 		branch=${VERSION}; \
@@ -59,15 +74,16 @@ RUN info() { printf '%s\n' "$@"; }; \
 	fi; \
 	if [[ $(git ls-remote ${NADEKOBOT_GIT_REMOTE} ${branch} -q) ]]; then \
 		git clone ${NADEKOBOT_GIT_REMOTE} -b ${branch} -q --depth 1 --recursive; \
-		info '' "NadekoBot ${branch} downloaded." '' "Downloading Nadeko dependencies…"; \
+		info '' "NadekoBot ${branch} downloaded."; \
 	else \
 		info '' "Incorrect git repository. Check settings." \
 		exit 1; \
 	fi; \
 	\
+  info '' "Downloading NadekoBot dependencies…"; \
 	cd $root/NadekoBot; \
 	dotnet restore; \
-	info '' "Download done." '' "Building NadekoBot…"; \
+	info '' "Download done." '' "Building NadekoBot ${branch}…"; \
 	dotnet build --configuration Release; \
 	info '' "Building done." "Installation Complete."
 
