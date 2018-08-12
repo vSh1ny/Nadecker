@@ -4,7 +4,7 @@
 # https://github.com/phusion/baseimage-docker
 FROM phusion/baseimage:latest
 
-ENV VERSION=2.27.2
+ENV VERSION=2.27.3
 ENV NADEKOBOT_GIT_REMOTE=git://github.com/Kwoth/NadekoBot.git
 ENV NADEKOBOT_GIT_DEFAULT_BRANCH=1.9
 
@@ -14,12 +14,12 @@ COPY opt ./
 
 SHELL ["/bin/bash", "-c"]
 
-RUN curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
+RUN curl -sL https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl && chmod a+rx /usr/local/bin/youtube-dl
 
 RUN add-apt-repository ppa:jonathonf/ffmpeg-3 && \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 
-RUN curl -O https://packages.microsoft.com/config/ubuntu/$(lsb_release -sr)/packages-microsoft-prod.deb && \
+RUN curl -sO https://packages.microsoft.com/config/ubuntu/$(lsb_release -sr)/packages-microsoft-prod.deb && \
   dpkg -i packages-microsoft-prod.deb && \
   rm -f packages-microsoft-prod.deb
 
