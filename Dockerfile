@@ -4,7 +4,7 @@
 # https://github.com/phusion/baseimage-docker
 FROM phusion/baseimage:latest
 
-ENV VERSION=2.27.0
+ENV VERSION=1.9
 ENV NADEKOBOT_GIT_REMOTE=git://github.com/Kwoth/NadekoBot.git
 ENV NADEKOBOT_GIT_DEFAULT_BRANCH=1.9
 
