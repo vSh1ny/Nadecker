@@ -4,9 +4,10 @@
 # https://github.com/phusion/baseimage-docker
 FROM phusion/baseimage:latest
 
-ENV VERSION=2.27.4
-ENV NADEKOBOT_GIT_REMOTE=git://github.com/Kwoth/NadekoBot.git
-ENV NADEKOBOT_GIT_DEFAULT_BRANCH=1.9
+ARG VERSION
+ENV VERSION ${VERSION:-2.27.4}
+ARG NADEKOBOT_GIT_REMOTE
+ENV NADEKOBOT_GIT_REMOTE ${NADEKOBOT_GIT_REMOTE:-git://github.com/Kwoth/NadekoBot.git}
 
 WORKDIR /opt
 
@@ -26,7 +27,7 @@ RUN curl -sO https://packages.microsoft.com/config/ubuntu/$(lsb_release -sr)/pac
   RUN apt-get update && apt-get install -y \
     apt-transport-https \
     curl \
-    dotnet-sdk-2.1.4 \
+    dotnet-sdk-2.1 \
     ffmpeg \
     git \
     libopus-dev \
@@ -61,8 +62,6 @@ RUN info() { printf '%s\n' "$@"; }; \
 	\
 	if [[ -n ${VERSION} ]]; then \
 		branch=${VERSION}; \
-	elif [[ -n ${NADEKOBOT_DEFAULT_BRANCH} ]]; then \
-		branch=${NADEKOBOT_DEFAULT_BRANCH}; \
 	else \
 		branch='1.9'; \
 	fi; \
