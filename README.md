@@ -41,7 +41,7 @@ services:
         constraints: [node.role == worker]
     volumes:
       - nadekobot-conf:/root/nadeko
-      - nadekobot-data:/opt/NadekoBot/src/NadekoBot/bin/Release/netcoreapp2.0/data
+      - nadekobot-data:/opt/NadekoBot/src/NadekoBot/bin/Release/netcoreapp2.1/data
       - nadekobot-data:/opt/NadekoBot/src/NadekoBot/data
 
 volumes:
